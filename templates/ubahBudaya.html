@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ubahBudaya</title>
+</head>
+<body>
+    {% include 'includes/_navbar.html' %}
+    <h2>Ubah Budaya</h2>
+    <span>masukkan nama budaya yang akan diubah</span>
+    {% include 'includes/_form.html' %}
+    {% if text is defined %}
+    <h4>{{text}}</h4>
+    {% endif %}
+</body>
+</html>

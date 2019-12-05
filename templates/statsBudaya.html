@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>statsBudaya</title>
+    <style>
+        table, th, td{
+            border: 1px solid black;
+        }
+        table{
+            margin: 2em;
+        }
+    </style>
+</head>
+<body>
+    {% include 'includes/_navbar.html' %}
+    <h4>Statistik Budaya</h4>
+    <span>pilih statistik apa yang ingin di tampilkan</span>
+    <form action="" method="POST">
+        <select name="stat">
+            <option value="all">All</option>
+            <option value="Tipe">Tipe</option>
+            <option value="Provinsi">Provinsi</option>
+        </select>
+        <input type="submit" name="submit">
+    </form>
+    {% if result is defined and result is number %}
+        <h2>Terdapat {{result}} budaya di dalam database</h2>
+    {% elif result is defined and result is not number %}
+        <table>
+            <tr>
+                <th>{{user}}</th>
+                <th>Jumlah</th>
+            </tr>
+            {% for item in result %}
+            <tr>
+                <td>{{item}}</td>
+                <td>{{result[item]}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+</body>
+</html>

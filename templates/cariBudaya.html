@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cari Budaya</title>
+    <style>
+        table, th, td{
+            border: 1px solid;
+            margin: 1em;
+        }
+    </style>
+</head>
+<body>
+    {% include 'includes/_navbar.html' %}
+    <h2>Cari Budaya</h2>
+    <form action="" method="POST">
+        <select name="budaya">
+            <option value="nama">Nama</option>
+            <option value="tipe">Tipe</option>
+            <option value="prov">Provinsi</option>
+        </select>
+        <input type="text" name="userType">
+        <input type="submit" name="submit">
+    </form>
+    {% if result is defined %}
+    <table>
+        <tr>
+            <th>Nama Budaya</th>
+            <th>Tipe</th>
+            <th>Provinsi</th>
+            <th>Url</th>
+        </tr>
+        {% for budaya in result %}
+        <tr>
+            {% for item in budaya %}
+            <td>{{item}}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+
+    {% if text is defined %}
+    <h3>{{text}}</h3>
+    {% endif %}
+    
+</body>
+</html>
