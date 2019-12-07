@@ -16,6 +16,8 @@
 
 	{% if result is defined and result >0: %}
 	<h3>{% print result %} data budaya telah terimpor dari file "{%print fname%}"</h3>
+	{% elif text is defined %}
+	<h3>{{text}}</h3>
 	{% endif %}
 </body>
 </html>

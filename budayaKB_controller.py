@@ -35,11 +35,15 @@ def importData():
 		return render_template("imporBudaya.html")
 
 	elif request.method == "POST":
-		f = request.files['file']
-		databasefilename=f.filename
-		result_impor=budayaData.importFromCSV(f.filename)
-		budayaData.exportToCSV(databasefilename) #setiap perubahan data langsung disimpan ke file
-		return render_template("imporBudaya.html", result=result_impor, fname=f.filename)
+		try:
+			f = request.files['file']
+			databasefilename=f.filename
+			result_impor=budayaData.importFromCSV(f.filename)
+			budayaData.exportToCSV(databasefilename) #setiap perubahan data langsung disimpan ke file
+			return render_template("imporBudaya.html", result=result_impor, fname=f.filename)
+		except:
+			text_impor = "Sepertinya terjadi Error, entah itu file bukan csv, atau GUI local tidak mengenali file"
+			return render_template("imporBudaya.html", text = text_impor)
 
 # Bagian ini nyari nama di file
 @app.route('/cariBudaya', methods=['GET', 'POST'])
@@ -52,10 +56,12 @@ def cariBudaya():
 		# masuk kedalah program
 		if budayaTipe == "nama":
 			nama = budayaData.cariByNama(namaBudaya)
+			list_nama = []
 			if len(nama) > 0:
 				for item in nama:
-					list_nama = [str(item).split(',')]
-				return render_template("cariBudaya.html", result = list_nama)
+					list_nama.append(str(item).split(','))
+					text_result = "Ditemukan {} Budaya dalam dataBudaya".format(len(list_nama))
+				return render_template("cariBudaya.html", result = list_nama, text = text_result)
 			else:	
 				text_result = "sepertinya yang anda cari tidak ada."		
 				return render_template("cariBudaya.html", text=text_result)
