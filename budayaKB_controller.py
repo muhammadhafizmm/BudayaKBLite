@@ -157,5 +157,9 @@ def statsBudaya():
 if __name__ == "__main__":
 	app.run(debug=True)
 
+# Diedit oleh Muhammad Hafiz Maulana
+# 1906350742
+# Kelas E
+
 
 
