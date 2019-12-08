@@ -8,6 +8,10 @@ Meganingrum Arista Jiwanggi (meganingrum@cs.ui.ac.id)
 
 Last update: 23 November 2019
 
+Updated by:
+Muhammad Hafiz Maulana (1906350742)
+Kelas E
+
 """
 from budayaKB_model import BudayaItem, BudayaCollection
 from flask import Flask, request, render_template, redirect, flash
@@ -33,7 +37,7 @@ def index():
 def importData():
 	if request.method == "GET":
 		return render_template("imporBudaya.html")
-
+	#Menambah except untuk file data error atau file tidak dikenali local
 	elif request.method == "POST":
 		try:
 			f = request.files['file']
@@ -45,7 +49,7 @@ def importData():
 			text_impor = "Sepertinya terjadi Error, entah itu file bukan csv, atau GUI local tidak mengenali file"
 			return render_template("imporBudaya.html", text = text_impor)
 
-# Bagian ini nyari nama di file
+# page cariBudaya
 @app.route('/cariBudaya', methods=['GET', 'POST'])
 def cariBudaya():
 	if request.method == "GET":
@@ -71,7 +75,7 @@ def cariBudaya():
 				list_tipe = []
 				for item in tipe:
 					list_tipe.append(str(item).split(','))
-				text_result = "ditemukan {} budaya di dalam data base kami.".format(len(list_tipe))
+				text_result = "ditemukan {} Tipe dalam dataBudaya".format(len(list_tipe))
 				return render_template("cariBudaya.html", result = list_tipe, text=text_result)
 			else:
 				text_result = "sepertinya yang anda cari tidak ada"
@@ -156,10 +160,5 @@ def statsBudaya():
 # run main app
 if __name__ == "__main__":
 	app.run(debug=True)
-
-# Diedit oleh Muhammad Hafiz Maulana
-# 1906350742
-# Kelas E
-
 
 
